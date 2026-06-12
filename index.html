@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Validation Testing Demo</title>
+    <style>
+        body {
+            font-family: Arial;
+            margin: 50px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        input {
+            padding: 8px;
+            margin: 5px;
+            width: 250px;
+        }
+        button {
+            padding: 8px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .success {
+            color: green;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Testing Through Validation</h1>
+    <h3>Client-side Validation Demo</h3>
+
+    <form id="myForm">
+        <div>
+            <label>Name (Required):</label><br>
+            <input type="text" id="name">
+            <div id="nameError" class="error"></div>
+        </div>
+
+        <div>
+            <label>Email (Must contain @):</label><br>
+            <input type="text" id="email">
+            <div id="emailError" class="error"></div>
+        </div>
+
+        <div>
+            <label>Age (18-60):</label><br>
+            <input type="number" id="age">
+            <div id="ageError" class="error"></div>
+        </div>
+
+        <div>
+            <label>Password (Min 8 characters):</label><br>
+            <input type="password" id="password">
+            <div id="passwordError" class="error"></div>
+        </div>
+
+        <button type="button" onclick="validateForm()">Submit</button>
+    </form>
+
+    <div id="result" class="success"></div>
+
+    <script>
+        function validateForm() {
+            // Get values
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let age = document.getElementById('age').value;
+            let password = document.getElementById('password').value;
+
+            // Clear previous errors
+            clearErrors();
+            
+            let isValid = true;
+            let message = "";
+
+            // Name validation
+            if (name === "") {
+                document.getElementById('nameError').innerHTML = "Name is required!";
+                isValid = false;
+            }
+
+            // Email validation
+            if (email === "") {
+                document.getElementById('emailError').innerHTML = "Email is required!";
+                isValid = false;
+            } else if (!email.includes('@')) {
+                document.getElementById('emailError').innerHTML = "Email must contain @ symbol!";
+                isValid = false;
+            }
+
+            // Age validation
+            if (age === "") {
+                document.getElementById('ageError').innerHTML = "Age is required!";
+                isValid = false;
+            } else if (age < 18 || age > 60) {
+                document.getElementById('ageError').innerHTML = "Age must be between 18 and 60!";
+                isValid = false;
+            }
+
+            // Password validation
+            if (password === "") {
+                document.getElementById('passwordError').innerHTML = "Password is required!";
+                isValid = false;
+            } else if (password.length < 8) {
+                document.getElementById('passwordError').innerHTML = "Password must be at least 8 characters!";
+                isValid = false;
+            }
+
+            // Result
+            if (isValid) {
+                document.getElementById('result').innerHTML = "✅ All validation passed! Testing successful.";
+            } else {
+                document.getElementById('result').innerHTML = "❌ Validation failed. Please fix errors.";
+            }
+        }
+
+        function clearErrors() {
+            document.getElementById('nameError').innerHTML = "";
+            document.getElementById('emailError').innerHTML = "";
+            document.getElementById('ageError').innerHTML = "";
+            document.getElementById('passwordError').innerHTML = "";
+            document.getElementById('result').innerHTML = "";
+        }
+    </script>
+
+    <h3>What this demonstrates:</h3>
+    <ul>
+        <li><strong>Client-side validation</strong> - checking before sending to server</li>
+        <li><strong>Required field validation</strong> - name cannot be empty</li>
+        <li><strong>Email format validation</strong> - must contain @</li>
+        <li><strong>Range validation</strong> - age between 18-60</li>
+        <li><strong>Length validation</strong> - password min 8 characters</li>
+    </ul>
+
+</body>
+</html>
