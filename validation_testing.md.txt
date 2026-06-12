@@ -1,0 +1,23 @@
+# Testing through Validation
+
+## What is Validation?
+Validation means checking if user input is correct before processing.
+
+## Types of Validation
+
+### 1. Client-side Validation
+- Happens in the browser
+- Fast and user-friendly
+- Examples: Required fields, email format, password length
+
+### 2. Server-side Validation
+- Happens on the server
+- Secure and cannot be bypassed
+- Examples: Checking if username exists, credit card validation
+
+### 3. Model Validation
+- Checks business rules
+- Examples: Price cannot be negative, stock cannot be below 0
+
+## Summary
+Validation is an important form of testing that ensures data correctness and security.
